@@ -1,18 +1,27 @@
 #!/usr/bin/python3
-import sys
 import requests
+import sys
 
 def get_employee_info(employee_id):
+    """
+    Get employee information by employee ID using REST API.
+    """
     url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/'
     response = requests.get(url)
     return response.json()
 
 def get_employee_todos(employee_id):
+    """
+    Get the TODO list of the employee by employee ID using REST API.
+    """
     url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
     response = requests.get(url)
     return response.json()
 
 def main(employee_id):
+    """
+    Main function to fetch and display the TODO list progress of the employee.
+    """
     employee = get_employee_info(employee_id)
     employee_name = employee.get("name")
 
@@ -37,4 +46,3 @@ if __name__ == "__main__":
             print("Usage: ./script_name.py <employee_id> (employee_id must be an integer)")
     else:
         print("Usage: ./script_name.py <employee_id>")
-        
